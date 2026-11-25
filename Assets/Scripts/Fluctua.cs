@@ -4,23 +4,24 @@ using UnityEngine.UIElements;
 public class Fluctua : MonoBehaviour
 {
     [SerializeField]
-    private int speed;
+    private float frecuencia; 
+    [SerializeField]
+    private float amplitud;
+
     private float positionx;
     private float positionz;
     private float positiony;
-    [SerializeField]
-    private int amplitud;
+   
     void Start()
     {
         positionx = transform.position.x;
         positionz = transform.position.z;
+        positiony = transform.position.y + Random.Range(-0.1f,0.1f) ;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        positiony =transform.position.y;
-        Vector3 dir = new Vector3(positionx, positionx + (amplitud * Mathf.Sin(speed * Time.time)),positionz );
+        Vector3 dir = new Vector3(positionx, positiony + (amplitud * Mathf.Sin(frecuencia * Time.time)), positionz);
         transform.position = dir;
     }
 }
